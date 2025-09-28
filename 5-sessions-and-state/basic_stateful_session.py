@@ -4,14 +4,15 @@ from dotenv import load_dotenv
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from google.genai import types
-from question_answering_agent import question_answering_agent
+from question_answering_agent import question_answering_agent #importing the agent we created within its directory question_answering_agent.
 
 load_dotenv()
 
 
 # Create a new session service to store state
-session_service_stateful = InMemorySessionService()
+session_service_stateful = InMemorySessionService()  #We'll stick with InMemory for now, nothing fancy.
 
+# An initial state for our session (nothing more than a dictionary with keys and values).
 initial_state = {
     "user_name": "Brandon Hancock",
     "user_preferences": """
@@ -23,8 +24,11 @@ initial_state = {
 }
 
 # Create a NEW session
+# Create a new session with the appropriate service.
 APP_NAME = "Brandon Bot"
 USER_ID = "brandon_hancock"
+
+# UUID: Creates a unique (long) identifier to designate this session.
 SESSION_ID = str(uuid.uuid4())
 stateful_session = session_service_stateful.create_session(
     app_name=APP_NAME,
@@ -35,6 +39,7 @@ stateful_session = session_service_stateful.create_session(
 print("CREATED NEW SESSION:")
 print(f"\tSession ID: {SESSION_ID}")
 
+# Just created a runner: provide it with the agent, session, and app_name to indicate the session is ready to go.
 runner = Runner(
     agent=question_answering_agent,
     app_name=APP_NAME,

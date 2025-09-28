@@ -1,6 +1,7 @@
 from google.adk.agents import Agent
 
 # Create the root agent
+# String interpolation is used to access the name and user preferences.
 question_answering_agent = Agent(
     name="question_answering_agent",
     model="gemini-2.0-flash",
