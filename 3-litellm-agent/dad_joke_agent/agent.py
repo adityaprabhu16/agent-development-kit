@@ -6,7 +6,7 @@ from google.adk.models.lite_llm import LiteLlm
 
 # https://docs.litellm.ai/docs/providers/openrouter
 model = LiteLlm(
-    model="openrouter/openai/gpt-4.1",
+    model="openrouter/openai/gpt-4.1", #specify which model we want to use via OpenRouter.
     api_key=os.getenv("OPENROUTER_API_KEY"),
 )
 
@@ -23,7 +23,7 @@ def get_dad_joke():
 
 root_agent = Agent(
     name="dad_joke_agent",
-    model=model,
+    model=model,                #simply pass the model we wish to create to our agent here.
     description="Dad joke agent",
     instruction="""
     You are a helpful assistant that can tell dad jokes. 

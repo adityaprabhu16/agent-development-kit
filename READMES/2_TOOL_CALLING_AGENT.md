@@ -7,4 +7,3 @@ Tool types in ADK:
  - Built-in Tools: ready to use tools provided by the framework for common tasks. Examples: Google Search, Code Execution, Retrieval Augmented Generation (RAG)
  - Third-Party Tools: Integrate tools seamlessly from popular external libraries. 
      - Examples: LangChain Tools, CrewAI Tools.
- - 
