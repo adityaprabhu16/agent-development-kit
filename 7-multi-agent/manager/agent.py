@@ -1,11 +1,14 @@
 from google.adk.agents import Agent
 from google.adk.tools.agent_tool import AgentTool
 
+#Import the sub agents from the sub_agents directory.
 from .sub_agents.funny_nerd.agent import funny_nerd
 from .sub_agents.news_analyst.agent import news_analyst
 from .sub_agents.stock_analyst.agent import stock_analyst
 from .tools.tools import get_current_time
 
+# Root (Manager agent)
+#If the sub agents can't handle something, we can use the root agent to utilize built-in tools essentially.
 root_agent = Agent(
     name="manager",
     model="gemini-2.0-flash",

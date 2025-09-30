@@ -4,6 +4,7 @@ import yfinance as yf
 from google.adk.agents import Agent
 
 
+# The description for this agent helps the root (parent agent) know what to do with this agent, and when to delegate a query to it.
 def get_stock_price(ticker: str) -> dict:
     """Retrieves current stock price and saves to session state."""
     print(f"--- Tool: get_stock_price called for {ticker} ---")
