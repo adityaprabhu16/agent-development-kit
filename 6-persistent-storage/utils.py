@@ -113,8 +113,13 @@ async def process_agent_response(event):
     return final_response
 
 
+# We're passing in a few different pieces of information:
+# - A runner with the agent and session we are working with
+# - The user_id and session_id of the session we are working with
+# - The query we are sending to the agent
 async def call_agent_async(runner, user_id, session_id, query):
     """Call the agent asynchronously with the user's query."""
+    #Convert the query to a content object (something that can be passed to the agent).
     content = types.Content(role="user", parts=[types.Part(text=query)])
     print(
         f"\n{Colors.BG_GREEN}{Colors.BLACK}{Colors.BOLD}--- Running Query: {query} ---{Colors.RESET}"
@@ -131,11 +136,13 @@ async def call_agent_async(runner, user_id, session_id, query):
     )
 
     try:
+        # For any real world application, we'll want to run this asynchronously, so use run_async instead of run.
         async for event in runner.run_async(
             user_id=user_id, session_id=session_id, new_message=content
         ):
             # Process each event and get the final response if available
             response = await process_agent_response(event)
+            # Once we have the response from the agent, we'll want to save it to the final_response_text variable.
             if response:
                 final_response_text = response
     except Exception as e:

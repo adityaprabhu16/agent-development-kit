@@ -1,7 +1,8 @@
 from google.adk.agents import Agent
 from google.adk.tools.tool_context import ToolContext
 
-
+#When you are working with state inside our tool calls, there is a ToolContext parameter. Pass in parameters you want, and at the very end, pass in tool_context.
+#It will have access to the state.
 def add_reminder(reminder: str, tool_context: ToolContext) -> dict:
     """Add a new reminder to the user's reminder list.
 
@@ -15,14 +16,16 @@ def add_reminder(reminder: str, tool_context: ToolContext) -> dict:
     print(f"--- Tool: add_reminder called for '{reminder}' ---")
 
     # Get current reminders from state
+    #We tell tool_context to access the state, and get the reminders key to retrieve the reminders, else return an empty list.
     reminders = tool_context.state.get("reminders", [])
 
-    # Add the new reminder
+    # Once we have access to the reminders, add the new reminder to the state.
     reminders.append(reminder)
 
     # Update state with the new list of reminders
     tool_context.state["reminders"] = reminders
 
+    # Return the action, the reminder, and the message. Make sure our tool return statement is as detailed as possible (JSON, key value pairs).
     return {
         "action": "add_reminder",
         "reminder": reminder,
@@ -30,6 +33,7 @@ def add_reminder(reminder: str, tool_context: ToolContext) -> dict:
     }
 
 
+#Here we are using the tool_context to access the state and get the reminders.
 def view_reminders(tool_context: ToolContext) -> dict:
     """View all current reminders.
 
@@ -47,6 +51,7 @@ def view_reminders(tool_context: ToolContext) -> dict:
     return {"action": "view_reminders", "reminders": reminders, "count": len(reminders)}
 
 
+#Very similar, pull out what we need from the state, make the changes, and update the state.
 def update_reminder(index: int, updated_text: str, tool_context: ToolContext) -> dict:
     """Update an existing reminder.
 
@@ -153,6 +158,7 @@ def update_user_name(name: str, tool_context: ToolContext) -> dict:
 
 
 # Create a simple persistent agent
+# Define out the CRUD capabilities of our agent, as well as extra specific instructions for our agent (the basic CRUD instructions for working with the agent).
 memory_agent = Agent(
     name="memory_agent",
     model="gemini-2.0-flash",
