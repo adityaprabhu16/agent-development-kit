@@ -3,7 +3,7 @@ from datetime import datetime
 from google.adk.agents import Agent
 from google.adk.tools.tool_context import ToolContext
 
-
+# A good example of an agent where we can update the state, and use that state to answer the questions.
 def purchase_course(tool_context: ToolContext) -> dict:
     """
     Simulates purchasing the AI Marketing Platform course.
@@ -46,7 +46,7 @@ def purchase_course(tool_context: ToolContext) -> dict:
 
     # Update interaction history in state via assignment
     tool_context.state["interaction_history"] = new_interaction_history
-
+    # Another good example here where we return SPECIFIC detailed information (success, descriptive message, the course we bought, when we bought it).
     return {
         "status": "success",
         "message": "Successfully purchased the AI Marketing Platform course!",

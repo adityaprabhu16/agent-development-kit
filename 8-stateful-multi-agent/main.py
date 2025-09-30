@@ -1,3 +1,4 @@
+#All of the logic here is our main logic.
 import asyncio
 
 # Import the main customer service agent
@@ -16,6 +17,7 @@ session_service = InMemorySessionService()
 
 # ===== PART 2: Define Initial State =====
 # This will be used when creating a new session
+# Initial session.
 initial_state = {
     "user_name": "Brandon Hancock",
     "purchased_courses": [],
@@ -40,12 +42,13 @@ async def main_async():
 
     # ===== PART 4: Agent Runner Setup =====
     # Create a runner with the main customer service agent
+    #Our runner that contains the agent (root agent), followed by the session_service.
     runner = Runner(
         agent=customer_service_agent,
         app_name=APP_NAME,
         session_service=session_service,
     )
-
+    #Various CRUD operations that are now defined in a utils.py file.
     # ===== PART 5: Interactive Conversation Loop =====
     print("\nWelcome to Customer Service Chat!")
     print("Type 'exit' or 'quit' to end the conversation.\n")

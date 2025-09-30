@@ -6,6 +6,7 @@ from .sub_agents.policy_agent.agent import policy_agent
 from .sub_agents.sales_agent.agent import sales_agent
 
 # Create the root customer service agent
+# Prompt here is the instructions for the agent on both the high level and when to invoke the sub agents.
 customer_service_agent = Agent(
     name="customer_service",
     model="gemini-2.0-flash",

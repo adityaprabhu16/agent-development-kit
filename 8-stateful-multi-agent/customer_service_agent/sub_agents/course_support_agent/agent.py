@@ -1,6 +1,9 @@
 from google.adk.agents import Agent
 
 # Create the course support agent
+# If the user owns a course, we'll answer questions about it.
+# Otherwise, we'll send the request to the sales agent.
+# Also notice that the purchase_info is a property of the agent, and we can access it in the instruction.
 course_support_agent = Agent(
     name="course_support",
     model="gemini-2.0-flash",
