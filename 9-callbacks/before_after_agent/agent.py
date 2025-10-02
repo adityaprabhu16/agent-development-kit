@@ -12,7 +12,7 @@ from google.adk.agents import LlmAgent
 from google.adk.agents.callback_context import CallbackContext
 from google.genai import types
 
-
+# Before agent callback: good for setting up resources or state needed only for this specific agent's run, performing validation checks on the session state.
 def before_agent_callback(callback_context: CallbackContext) -> Optional[types.Content]:
     """
     Simple callback that logs when the agent starts processing a request.

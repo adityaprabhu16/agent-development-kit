@@ -81,7 +81,7 @@ def before_model_callback(
     # Return None to proceed with normal model request
     return None
 
-
+# Cool example: parsing the model's response to replace certain words with more positive alternatives.
 def after_model_callback(
     callback_context: CallbackContext, llm_response: LlmResponse
 ) -> Optional[LlmResponse]:

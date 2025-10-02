@@ -46,6 +46,7 @@ def get_capital_city(country: str) -> Dict[str, str]:
 
 
 # --- Define Before Tool Callback ---
+# Provides some country name conversions and blocks certain countries if requested and the tool is called.
 def before_tool_callback(
     tool: BaseTool, args: Dict[str, Any], tool_context: ToolContext
 ) -> Optional[Dict]:
@@ -76,6 +77,8 @@ def before_tool_callback(
 
 
 # --- Define After Tool Callback ---
+# Gives us the opportunity to modify the tool response after the tool is called. 
+#Example: adding a note for any USA capital responses.
 def after_tool_callback(
     tool: BaseTool, args: Dict[str, Any], tool_context: ToolContext, tool_response: Dict
 ) -> Optional[Dict]:
